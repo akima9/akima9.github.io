@@ -106,6 +106,10 @@ a:visited {text-decoration: none;}
 .history-section {
 	padding-top: 100px;
 	background-color: #a68d77;
+	background-image: url("../img/history_background02.png");
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
 }
 .history-section h1 {
 	font-family: 'Sriracha', cursive;
