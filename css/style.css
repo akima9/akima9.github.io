@@ -14,9 +14,9 @@ a:visited {text-decoration: none;}
 .top-menu{
 	width: 100%;
 	background-color: #012E40;
-	position:fixed;
+	/* position:fixed;
 	display:inline-block;
-	top:0;
+	top:0; */
 }
 .top-menu ul {
 	overflow: hidden;
@@ -112,21 +112,25 @@ a:visited {text-decoration: none;}
 	color: #012E40;
 	text-align: center;
 }
-.history-section li {
-	overflow: hidden;
+.history-section .history-title{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 40px;
+	color: #012E40;
+	margin: 0;
 }
-.history-section li div {
-	width: 500px;
-}	
-.history-section li:nth-child(odd) div {
-	border-left: 1px solid #000;
-	float: right;
-	padding-left: 100px;
+.history-section .history-detail{
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #012E40;
 }
-.history-section li:nth-child(even) div {
-	border-right: 1px solid #000;
-	text-align: right;
-	padding-right: 100px;
+.history-section .gy-btn{
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #012E40;
+	font-weight: bold;
+}
+.history-section .gy-date{
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #012E40;
+	font-weight: bold;
 }
 
 
