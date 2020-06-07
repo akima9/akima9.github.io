@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Sriracha&display=swap');
+
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #012E40;
+}
+a:link {text-decoration: none;}
+a:visited {text-decoration: none;}
+
+
+.inner{width: 1000px;margin: 0 auto;}
+
+
+.top-menu{
+	background-color: #012E40;
+}
+.top-menu ul {
+	overflow: hidden;
+}
+.top-menu li {
+	float: left;
+	width: 33.333%;
+	text-align: center;
+}
+.top-menu li a {
+	display: inline-block;
+	line-height: 50px;
+	width: 100px;
+	height: 50px;
+	color: #F2CEA2;
+}
+.top-menu li a:hover { 
+	color: #DCEAF2;
+}
+
+
+.main-section {
+	width: 100%;
+	height: 600px;
+	background-color: #a68d77;
+	text-align: center;
+	/*background-image:url("../img/about_background.png");
+	background-repeat:no-repeat;
+	background-position:center bottom;
+	background-size:cover;*/
+}
+.main-section h1, h2{
+	color: white;
+}
+.main-section h1 {
+	font-size: 100px;
+	font-weight: bold;
+	padding-top: 100px;
+}
+.main-section h2 {
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 50px;
+}
+.main-section ul {
+	margin: 0 auto;
+	margin-top: 50px;
+	text-align: center;
+}
+.main-section li{
+	display: inline-block;
+}
+.main-section li:last-child{
+	margin-left: 10px;
+}
+.main-section li a i{
+	color: white;
+	font-size: 30px;
+}
+.main-section .profile-img {
+	width: 250px;
+	height: 250px;
+	background-image: url("../img/profile.jpg");
+	background-repeat:no-repeat;
+	background-position:center top;
+	background-size:cover;
+	margin: 0 auto;
+	margin-top: 50px;
+	border-radius: 50%;
+}
+
+
+.about-section {
+	margin-top: 200px;
+	text-align: center;
+	height: 500px;
+}
+.about-section h1 {
+	font-family: 'Sriracha', cursive;
+	color: #012E40;
+}
+.about-section .title{
+	font-family: 'Do Hyeon', sans-serif;
+	font-size: 50px;
+}
+
+
+.history-section {
+	padding-top: 100px;
+	background-color: #a68d77;
+}
+.history-section h1 {
+	font-family: 'Sriracha', cursive;
+	color: #012E40;
+	text-align: center;
+}
+.history-section li {
+	overflow: hidden;
+}
+.history-section li div {
+	width: 500px;
+}	
+.history-section li:nth-child(odd) div {
+	border-left: 1px solid #000;
+	float: right;
+	padding-left: 100px;
+}
+.history-section li:nth-child(even) div {
+	border-right: 1px solid #000;
+	text-align: right;
+	padding-right: 100px;
+}
+
+
+.contact-section {
+	height: 500px;
+	padding-top: 100px;
+}
+.contact-section h1 {
+	text-align: center;
+	font-family: 'Sriracha', cursive;
+	color: #012E40;
+	text-align: center;
+}
+.contact-section li {
+	text-align: center;
+}

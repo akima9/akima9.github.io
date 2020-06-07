@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR|Pacifico&subset=korean');
+body, header, footer, section, nav, article, main, a, div, h1, h2, h3, h4, ul, li, dl, dt, dd, p, form, fieldset, legend, label, input, span, img, strong, video, address, i{margin: 0; padding: 0; box-sizing: border-box;}
+header, footer, article, section, nav, main{display: block;}
+ul, ol, dl, li{list-style: none;}
+img, fieldset{border: none;}
+h1, h2, h3, h4, h5, h6{font-weight: normal;}
+address{font-style: normal;}
+input{-webkit-appearance: none;	-moz-appearance: none; -o-appearance: none; appearance: none; font-size: inherit;}
+input::-ms-check{display:none}
+input, img, i{vertical-align: middle;}
+button{-webkit-appearance: none; appearance: none; padding: 0; border:0; text-transform: none; cursor:pointer;}
