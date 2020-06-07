@@ -64,12 +64,12 @@
 		<div class="inner">
 			<h1>Contact</h1>
 
-			<div id="map" style="width:100%;height:400px;"></div>
-
 			<ul>
 				<li>email : akima777@naver.com</li>
 				<li>phone : 010-8717-6757</li>
 			</ul>
+
+			<div id="map" class="address" style="width:100%;height:400px;"></div>
 		</div>
 	</div>
 
@@ -77,10 +77,13 @@
 </html>
 
 <script>
-	var mapOptions = {
-		center: new naver.maps.LatLng(37.3595704, 127.105399),
-		zoom: 10
-	};
-	
-	var map = new naver.maps.Map('map', mapOptions);
+	var map = new naver.maps.Map('map', {
+    center: new naver.maps.LatLng(37.498445, 127.136467),
+    zoom: 15
+	});
+
+	var marker = new naver.maps.Marker({
+		position: new naver.maps.LatLng(37.498445, 127.136467),
+		map: map
+	});
 	</script>
