@@ -8,9 +8,12 @@
 	<meta name="keywords" content="">
 	<meta name="description" content="">
 	<meta name="author" content="">
+	
 	<link rel="stylesheet" href="css/reset.css">
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=vc6syjyp4a"></script>
 </head>
 <body>
 
@@ -61,6 +64,8 @@
 		<div class="inner">
 			<h1>Contact</h1>
 
+			<div id="map" style="width:100%;height:400px;"></div>
+
 			<ul>
 				<li>email : akima777@naver.com</li>
 				<li>phone : 010-8717-6757</li>
@@ -70,3 +75,12 @@
 
 </body>
 </html>
+
+<script>
+	var mapOptions = {
+		center: new naver.maps.LatLng(37.3595704, 127.105399),
+		zoom: 10
+	};
+	
+	var map = new naver.maps.Map('map', mapOptions);
+	</script>
