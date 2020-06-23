@@ -136,6 +136,11 @@ a:visited {text-decoration: none;}
 	color: #012E40;
 	font-weight: bold;
 }
+.history-section .detail-text-style{
+	background-color: #E1FCFF;
+	padding: 10px;
+	margin-bottom: 20px;
+}
 
 
 .contact-section h1 {
