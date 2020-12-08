@@ -13,17 +13,18 @@ a:visited {text-decoration: none;}
 
 .top-menu{
 	width: 100%;
-	background-color: #012E40;
-	/* position:fixed;
+	background-color: #111111;
+	position:fixed;
 	display:inline-block;
-	top:0; */
+	top:0;
+	z-index: 9999;
 }
 .top-menu ul {
 	overflow: hidden;
 }
 .top-menu li {
 	float: left;
-	width: 33.333%;
+	width: 25%;
 	text-align: center;
 }
 .top-menu li a {
@@ -31,10 +32,11 @@ a:visited {text-decoration: none;}
 	line-height: 50px;
 	width: 100px;
 	height: 50px;
-	color: #F2CEA2;
+	color: #999999;
 }
 .top-menu li a:hover { 
-	color: #DCEAF2;
+	color: #ffffff;
+	border-bottom: 2px solid orange;
 }
 
 

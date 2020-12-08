@@ -21,10 +21,11 @@
 		function scroll(param){
 
 			var element = document.querySelector(param);
+			var absoluteTop = window.pageYOffset + element.getBoundingClientRect().top; //절대 Y좌표값
 
-			element.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start'
+			window.scrollTo({
+				top: absoluteTop-100,
+				behavior: 'smooth'
 			});
 
 		};//end scroll()
@@ -34,13 +35,14 @@
 
 	<div class="top-menu">
 		<ul class="inner">
-			<li><a href="javascript:scroll('#about');">About Me</a></li>
+			<li><a href="javascript:scroll('#home');">Home</a></li>
+			<li><a href="javascript:scroll('#about');">About</a></li>
 			<li><a href="javascript:scroll('#history');">History</a></li>
 			<li><a href="javascript:scroll('#contact')">Contact</a></li>
 		</ul>
 	</div>
 	
-	<div class="main-section">
+	<div id="home" class="main-section">
 		<div class="inner">
 			<h1>WEB DEVELOPER</h1>
 			<h2>김기용</h2>
