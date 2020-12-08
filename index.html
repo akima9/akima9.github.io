@@ -16,14 +16,27 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=vc6syjyp4a"></script>
+
+	<script>
+		function scroll(param){
+
+			var element = document.querySelector(param);
+
+			element.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start'
+			});
+
+		};//end scroll()
+	</script>
 </head>
 <body>
 
 	<div class="top-menu">
 		<ul class="inner">
-			<li><a href="#about">About Me</a></li>
-			<li><a href="#history">History</a></li>
-			<li><a href="#contact">Contact</a></li>
+			<li><a href="javascript:scroll('#about');">About Me</a></li>
+			<li><a href="javascript:scroll('#history');">History</a></li>
+			<li><a href="javascript:scroll('#contact')">Contact</a></li>
 		</ul>
 	</div>
 	
@@ -40,7 +53,7 @@
 	</div>
 
 	<div class="about-section inner">
-		<h1><a name="about">About</a></h1>
+		<h1><a id="about" name="about">About</a></h1>
 
 		<p class="title">
 			저는 사람들에게 도움을 주는 것이 꿈이고,<br>
@@ -51,7 +64,7 @@
 
 	<div class="history-section">
 		
-		<h1><a name="history">History</a></h1>
+		<h1><a id="history" name="history">History</a></h1>
 		
 		<section class="cd-timeline js-cd-timeline">
 			<div class="container max-width-lg cd-timeline__container">
@@ -161,7 +174,7 @@
 
 	<div class="contact-section">
 		<div class="inner">
-			<h1><a name="contact"></a>Contact</h1>
+			<h1><a id="contact" name="contact"></a>Contact</h1>
 
 			<ul>
 				<li><i class="material-icons">email</i> akima777@naver.com</li>
