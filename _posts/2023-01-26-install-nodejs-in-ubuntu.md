@@ -2,6 +2,9 @@
 layout: post
 title: "ubuntu에 Node.js 설치"
 ---
+- [Download Node.js](#download-nodejs)
+- [Install Node.js](#install-nodejs)
+
 # Download Node.js
 - https://nodejs.org/ko/download/ 접속
 - Linux Binaries(x64)의 링크 주소 복사
