@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "mac github blog 시작하기"
 ---
 # 목차
