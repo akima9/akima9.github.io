@@ -1,11 +1,10 @@
 ---
 title: "ubuntu에 Node.js 설치"
+toc: true
+toc_label: "ubuntu에 Node.js 설치"
+toc_icon: "tags"
+toc_sticky: true
 ---
-# Overview
-- [Overview](#overview)
-- [Download Node.js](#download-nodejs)
-- [Install Node.js](#install-nodejs)
-
 # Download Node.js
 - https://nodejs.org/ko/download/ 접속
 - Linux Binaries(x64)의 링크 주소 복사
