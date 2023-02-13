@@ -1,5 +1,7 @@
 ---
 title: "Elastic Stack 알아보기"
+categories:
+  - Programming
 toc: true
 toc_label: "Elastic Stack 알아보기"
 toc_icon: "tags"

@@ -1,5 +1,7 @@
 ---
 title: "Elasticsearch 다른 index join (Enrich & Ingest Pipeline)"
+categories:
+  - Programming
 toc: true
 toc_label: "Elasticsearch 다른 index join (Enrich)"
 toc_icon: "tags"

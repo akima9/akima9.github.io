@@ -1,5 +1,5 @@
 # main links
-main:
+# main:
   # - title: "Quick-Start Guide"
     # url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   # - title: "About"
@@ -10,3 +10,11 @@ main:
   #   url: /collection-archive/
   # - title: "Sitemap"
   #   url: /sitemap/
+
+sidebar-category:
+  - title: "Category"
+    children:
+      - title: "Coding Test"
+        url: "/CodingTest"
+      - title: "Programming"
+        url:  "/Programming"

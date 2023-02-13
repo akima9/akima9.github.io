@@ -1,5 +1,7 @@
 ---
 title: "DB 서버 구성하기"
+categories:
+  - Programming
 toc: true
 toc_label: "DB 서버 구성하기"
 toc_icon: "tags"

@@ -1,5 +1,7 @@
 ---
 title: "ubuntu에 Node.js 설치"
+categories:
+  - Programming
 toc: true
 toc_label: "ubuntu에 Node.js 설치"
 toc_icon: "tags"
