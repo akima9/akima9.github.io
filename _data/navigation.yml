@@ -12,9 +12,13 @@
   #   url: /sitemap/
 
 sidebar-category:
-  - title: "Category"
-    children:
-      - title: "Coding Test"
-        url: "/CodingTest"
-      - title: "Programming"
-        url:  "/Programming"
+  # - title: "Category"
+  #   children:
+  #     - title: "Coding Test"
+  #       url: "/CodingTest"
+  #     - title: "Programming"
+  #       url:  "/Programming"
+  - title: "🤯 Coding Test"
+    url: "/CodingTest"
+  - title: "🧑🏻‍💻 Programming"
+    url:  "/Programming"
