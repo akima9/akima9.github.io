@@ -197,3 +197,7 @@ ERROR: gnutls not found using pkg-config.
 
 * 해결 : sudo apt-get install libunistring-dev
 ```
+
+# References
+- `https://docs.nvidia.com/video-technologies/video-codec-sdk/ffmpeg-with-nvidia-gpu/`
+- `https://trac.ffmpeg.org/wiki/CompilationGuide/Ubuntu`
