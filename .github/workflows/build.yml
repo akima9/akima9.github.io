@@ -16,7 +16,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 2.7.7  # 사용하는 Ruby 버전으로 변경하세요.
+        ruby-version: 2.7.x  # 사용하는 Ruby 버전으로 변경하세요.
 
     - name: Install Node.js
       uses: actions/setup-node@v2
