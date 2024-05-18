@@ -20,7 +20,7 @@ title                    : "Gi-Log"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Gi-yong"
-description              : "An amazing website."
+description              : "하루하루의 개발 경험과 작은 성취들을 기록합니다. 코드로 그리는 일상."
 url                      : "https://akima9.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -104,9 +104,9 @@ analytics:
 
 # Site Author
 author:
-  name             : "Gi-yong"
+  name             : # "Gi-yong"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am a **back-end developer**."
+  bio              : "하루하루의 개발 경험과 작은 성취들을 기록합니다. 코드로 그리는 일상."
   # location         : "Somewhere"
   email            : "dev.giyong@gmail.com"
   links:
