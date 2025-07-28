@@ -1,7 +1,11 @@
 ---
-date: '2025-07-28T21:58:30.326321'
-layout: post
-title: '''김치의 역사와 건강 효능'''
+title: 김치의 역사와 건강 효능
+categories:
+  - Health
+toc: true
+toc_label: "김치의 역사와 건강 효능"
+toc_icon: "tags"
+toc_sticky: true
 ---
 
 # 김치의 역사와 건강 효능
