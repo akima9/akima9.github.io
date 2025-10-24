@@ -22,3 +22,5 @@ sidebar-category:
     url: "/CodingTest"
   - title: "🧑🏻‍💻 Programming"
     url:  "/Programming"
+  - title: "📱 Apps"
+    url:  "/Apps"
