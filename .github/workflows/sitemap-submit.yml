@@ -1,0 +1,50 @@
+name: Submit sitemap to Google
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  submit-sitemap:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install google-auth google-auth-oauthlib google-api-python-client
+
+      - name: Submit sitemap to Google Search Console
+        env:
+          GCLOUD_SERVICE_KEY: ${{ secrets.GCLOUD_SERVICE_KEY }}
+          SITE_URL: ${{ secrets.SITE_URL }}
+          SITEMAP_URL: ${{ secrets.SITEMAP_URL }}
+        run: |
+          echo "$GCLOUD_SERVICE_KEY" > key.json
+
+          python <<EOF
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+
+          creds = service_account.Credentials.from_service_account_file(
+              "key.json",
+              scopes=["https://www.googleapis.com/auth/webmasters"]
+          )
+
+          service = build("searchconsole", "v1", credentials=creds)
+          site_url = "${{ secrets.SITE_URL }}"
+          sitemap_url = "${{ secrets.SITEMAP_URL }}"
+
+          request = service.sitemaps().submit(siteUrl=site_url, feedpath=sitemap_url)
+          response = request.execute()
+          print("✅ Sitemap submitted successfully:", response)
+          EOF
