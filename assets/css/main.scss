@@ -7,3 +7,208 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+/* 실수령액 계산기 */
+.salary-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1em 1.25em;
+  margin-bottom: 1.5em;
+  padding: 1.25em;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  background: mix(#fff, $primary-color, 95%);
+
+  @media (max-width: $small - 1px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.salary-form__row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35em;
+  min-width: 0;
+
+  label {
+    margin: 0;
+    font-size: $type-size-6;
+    font-weight: bold;
+  }
+
+  input,
+  select {
+    margin: 0;
+    font-size: $type-size-5;
+  }
+}
+
+.salary-form__row--full,
+.salary-form__row--check {
+  grid-column: 1 / -1;
+}
+
+.salary-form__row--check label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: normal;
+
+  input {
+    width: auto;
+  }
+}
+
+.salary-form__money {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+
+  input {
+    flex: 1;
+    min-width: 0;
+    text-align: right;
+  }
+
+  #salary-input {
+    font-size: $type-size-4;
+    font-weight: bold;
+  }
+}
+
+.salary-form__hint {
+  color: $primary-color;
+  font-weight: bold;
+  min-height: 1.5em;
+}
+
+.salary-form__quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+
+  .btn {
+    margin: 0;
+  }
+}
+
+.net-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75em;
+  margin: 1em 0 1.5em;
+
+  @media (max-width: $small - 1px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.net-summary__item {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+}
+
+.net-summary__item--main {
+  border-color: $primary-color;
+  background: mix(#fff, $primary-color, 92%);
+}
+
+.net-summary__label {
+  font-size: $type-size-6;
+  color: $muted-text-color;
+}
+
+.net-summary__value {
+  font-size: $type-size-3;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.net-summary__sub {
+  font-size: $type-size-6;
+  color: $muted-text-color;
+}
+
+.page__content .salary-table {
+  display: table;
+  width: 100%;
+  font-size: $type-size-6;
+
+  th,
+  td {
+    padding: 0.5em 0.75em;
+  }
+
+  tbody th {
+    text-align: left;
+    font-weight: normal;
+    border-bottom: 1px solid $border-color;
+  }
+
+  tbody td {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  thead th:not(:first-child) {
+    text-align: right;
+  }
+
+  tbody td:first-child {
+    text-align: left;
+  }
+}
+
+.salary-table__total {
+  th,
+  td {
+    font-weight: bold !important;
+    border-top: 2px solid $border-color;
+  }
+}
+
+.salary-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10em, 1fr));
+  gap: 0.5em;
+  margin: 0 0 1em;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6em 0.8em;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    font-size: $type-size-6;
+    text-decoration: none;
+
+    &:hover {
+      border-color: $primary-color;
+    }
+  }
+}
+
+.salary-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5em;
+  margin-top: 2em;
+
+  .btn {
+    margin: 0;
+  }
+}
+
+.salary-disclaimer {
+  font-size: $type-size-6 !important;
+}

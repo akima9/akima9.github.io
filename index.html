@@ -1,6 +1,112 @@
 ---
-layout: home
-author_profile: true
-sidebar:
-    nav: "sidebar-category"
+layout: single
+classes: wide
+title: "2026 연봉 실수령액 계산기"
+description: "연봉을 입력하면 국민연금·건강보험·고용보험·소득세를 뺀 월 실수령액을 바로 계산합니다. 2026년 4대보험 요율과 국세청 간이세액표 기준, 부양가족·비과세·퇴직금 포함 여부 반영."
 ---
+{% assign d = site.salary | where: "salary", 4000 | first %}
+{% assign r = d.r %}
+<form id="salary-form" class="salary-form" autocomplete="off" onsubmit="return false">
+  <div class="salary-form__row salary-form__row--full">
+    <label for="salary-input">연봉 (세전)</label>
+    <div class="salary-form__money">
+      <input id="salary-input" name="salary" type="text" inputmode="numeric" value="40,000,000" aria-describedby="salary-hint">
+      <span>원</span>
+    </div>
+    <small id="salary-hint" class="salary-form__hint">4,000만원</small>
+    <div class="salary-form__quick" role="group" aria-label="빠른 입력">
+      <button type="button" class="btn btn--small btn--inverse" data-add="10000000">+1,000만</button>
+      <button type="button" class="btn btn--small btn--inverse" data-add="1000000">+100만</button>
+      <button type="button" class="btn btn--small btn--inverse" data-add="-1000000">-100만</button>
+    </div>
+  </div>
+  <div class="salary-form__row">
+    <label for="nontax-input">월 비과세액 (식대 등)</label>
+    <div class="salary-form__money">
+      <input id="nontax-input" name="nontax" type="text" inputmode="numeric" value="200,000">
+      <span>원</span>
+    </div>
+  </div>
+  <div class="salary-form__row">
+    <label for="family-input">공제대상가족 수 (본인 포함)</label>
+    <select id="family-input" name="family">
+      {% for i in (1..11) %}<option value="{{ i }}">{{ i }}명</option>{% endfor %}
+    </select>
+  </div>
+  <div class="salary-form__row">
+    <label for="children-input">8~20세 자녀 수</label>
+    <select id="children-input" name="children">
+      {% for i in (0..10) %}<option value="{{ i }}">{{ i }}명</option>{% endfor %}
+    </select>
+  </div>
+  <div class="salary-form__row salary-form__row--check">
+    <label><input id="severance-input" name="severance" type="checkbox"> 퇴직금 포함 연봉 (연봉 ÷ 13)</label>
+  </div>
+</form>
+
+<div id="salary-result" aria-live="polite">
+  <div class="net-summary">
+    <div class="net-summary__item net-summary__item--main">
+      <span class="net-summary__label">월 실수령액</span>
+      <strong class="net-summary__value" data-out="monthlyNet">{{ r.monthlyNet }}</strong>
+      <span class="net-summary__sub" data-out="monthlyNetMan">약 {{ r.monthlyNetMan }}</span>
+    </div>
+    <div class="net-summary__item">
+      <span class="net-summary__label">연 실수령액</span>
+      <strong class="net-summary__value" data-out="annualNet">{{ r.annualNet }}</strong>
+      <span class="net-summary__sub" data-out="annualNetMan">약 {{ r.annualNetMan }}</span>
+    </div>
+    <div class="net-summary__item">
+      <span class="net-summary__label">월 공제액</span>
+      <strong class="net-summary__value" data-out="totalDeduction">{{ r.totalDeduction }}</strong>
+      <span class="net-summary__sub" data-out="deductionRate">세전 월급의 {{ r.deductionRate }}</span>
+    </div>
+  </div>
+
+  <table class="salary-table">
+    <tbody>
+      <tr><th scope="row">세전 월급</th><td data-out="monthlyGross">{{ r.monthlyGross }}</td></tr>
+      <tr><th scope="row">비과세</th><td data-out="nonTaxable">{{ r.nonTaxable }}</td></tr>
+      <tr><th scope="row">국민연금</th><td data-out="pension">-{{ r.pension }}</td></tr>
+      <tr><th scope="row">건강보험</th><td data-out="health">-{{ r.health }}</td></tr>
+      <tr><th scope="row">장기요양보험</th><td data-out="longTermCare">-{{ r.longTermCare }}</td></tr>
+      <tr><th scope="row">고용보험</th><td data-out="employment">-{{ r.employment }}</td></tr>
+      <tr><th scope="row">근로소득세</th><td data-out="incomeTax">-{{ r.incomeTax }}</td></tr>
+      <tr><th scope="row">지방소득세</th><td data-out="localTax">-{{ r.localTax }}</td></tr>
+      <tr class="salary-table__total"><th scope="row">월 실수령액</th><td data-out="monthlyNet">{{ r.monthlyNet }}</td></tr>
+    </tbody>
+  </table>
+  <p id="salary-detail-link"><a href="{{ d.url }}">연봉 4,000만원 실수령액 자세히 보기 (부양가족별·인상 효과) →</a></p>
+</div>
+
+<h2 id="popular">연봉별 실수령액 바로 보기</h2>
+<ul class="salary-links">
+  {% assign popular = "2400,2800,3000,3200,3500,3800,4000,4500,5000,5500,6000,7000,8000,9000,10000,12000" | split: "," %}
+  {% for v in popular %}
+    {% assign p = site.salary | where: "salary", v | first %}
+    {% if p %}<li><a href="{{ p.url }}"><span>연봉 {{ p.label }}</span><strong>월 {{ p.r.monthlyNetMan }}</strong></a></li>{% endif %}
+  {% endfor %}
+</ul>
+<p><a href="/salary/">2,000만원~3억원 전체 연봉 실수령액 표 보기 →</a></p>
+
+<h2 id="how">실수령액은 어떻게 계산되나요?</h2>
+<p>실수령액은 세전 월급에서 <strong>4대보험(국민연금·건강보험·장기요양보험·고용보험)</strong>과 <strong>근로소득세·지방소득세</strong>를 뺀 금액입니다.</p>
+<ol>
+  <li><strong>세전 월급</strong> = 연봉 ÷ 12 (퇴직금 포함 연봉이면 ÷ 13)</li>
+  <li><strong>과세 대상 월급</strong> = 세전 월급 - 비과세액(식대 월 20만원까지 등)</li>
+  <li><strong>4대보험료</strong> = 과세 대상 월급 × 각 보험료율</li>
+  <li><strong>근로소득세</strong> = 국세청 간이세액표에서 월급과 공제대상가족 수로 찾은 금액 (8~20세 자녀 수만큼 추가 공제)</li>
+  <li><strong>지방소득세</strong> = 근로소득세 × 10%</li>
+</ol>
+
+<h2 id="faq">자주 묻는 질문</h2>
+<h3>공제대상가족 수에는 누가 포함되나요?</h3>
+<p>본인을 포함해 연간 소득금액 100만원 이하인 배우자, 만 20세 이하 자녀, 만 60세 이상 부모 등 기본공제 대상자를 모두 셉니다. 회사에 제출한 원천징수 신고서의 부양가족 수와 같게 입력하면 됩니다.</p>
+<h3>비과세액은 얼마로 입력해야 하나요?</h3>
+<p>대부분의 회사는 식대를 월 20만원까지 비과세로 지급합니다. 자가운전보조금(월 20만원), 6세 이하 자녀 보육수당(월 20만원) 등이 있다면 더해서 입력하세요. 급여명세서의 비과세 항목 합계를 확인하는 것이 가장 정확합니다.</p>
+<h3>계산 결과와 실제 월급이 조금 달라요.</h3>
+<p>회사마다 수당 구성, 보험료 정산 시점, 원천징수 비율 선택(80·100·120%)이 달라 차이가 날 수 있습니다. 특히 국민연금 기준소득월액은 매년 7월, 건강보험료는 연말정산 후 4월에 조정됩니다.</p>
+
+{% include salary/basis.html %}
+
+<script type="module" src="{{ '/assets/js/salary/calculator-ui.js' | relative_url }}"></script>

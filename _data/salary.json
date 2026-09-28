@@ -1,0 +1,10 @@
+{
+  "year": 2026,
+  "basis_label": "2026년 7월 기준",
+  "pension_rate": "4.75%",
+  "pension_min": "410,000원",
+  "pension_max": "6,590,000원",
+  "health_rate": "3.595%",
+  "care_rate": "건강보험료 × 13.1405%",
+  "employment_rate": "0.9%"
+}

@@ -1,0 +1,50 @@
+name: Generate salary pages
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "assets/js/salary/**"
+      - "scripts/salary/**"
+  schedule:
+    - cron: "0 0 1 * *" # 매월 1일 09:00 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: salary-pages
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Test calculation
+        run: node --test scripts/salary/calc.test.mjs
+
+      - name: Generate pages
+        run: node scripts/salary/generate.mjs
+
+      - name: Commit changes
+        run: |
+          git add _salary _data/salary.json
+          if git diff --cached --quiet; then
+            echo "변경 사항 없음"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "연봉별 실수령액 페이지 재생성"
+          git push

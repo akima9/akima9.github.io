@@ -16,21 +16,21 @@ minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt"
 
 # Site Settings
 locale                   : "ko-KR" #en-US
-title                    : "Gi-Log"
+title                    : "실수령액 계산기"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Gi-yong"
-description              : "하루하루의 개발 경험과 작은 성취들을 기록합니다. 코드로 그리는 일상."
+description              : "2026년 연봉 실수령액 계산기. 국민연금·건강보험·고용보험·소득세 공제 후 매달 받는 월급을 국세청 간이세액표 기준으로 계산합니다."
 url                      : "https://akima9.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/img/favicon-32x32.png" # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
-masthead_title           : " " # overrides the website title displayed in the masthead, use " " for no title
+masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
-  provider               : "utterances" # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
+  provider               : false # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
     shortname            : # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
   discourse:
@@ -106,7 +106,7 @@ analytics:
 author:
   name             : # "Gi-yong"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "하루하루의 개발 경험과 작은 성취들을 기록합니다. 코드로 그리는 일상."
+  bio              :
   # location         : "Somewhere"
   email            : "dev.giyong@gmail.com"
   links:
@@ -183,6 +183,9 @@ exclude:
   - tmp
   - /docs # ignore Minimal Mistakes /docs
   - /test # ignore Minimal Mistakes /test
+  - scripts
+  - assets/js/salary/package.json
+  - keys
 keep_files:
   - .git
   - .svn
@@ -220,7 +223,7 @@ sass:
 permalink: /:categories/:title/
 paginate: 5 # amount of posts to show
 paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+timezone: Asia/Seoul # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins (previously gems:)
@@ -277,19 +280,34 @@ compress_html:
     envs: development
 
 
+# Collections
+collections:
+  salary:
+    output: true
+    permalink: /salary/:name/
+
+
 # Defaults
 defaults:
-  # _posts
+  # _salary: scripts/salary/generate.mjs 가 생성하는 연봉별 실수령액 페이지
   - scope:
       path: ""
-      type: posts
+      type: salary
+    values:
+      layout: salary
+      classes: wide
+  # _pages
+  - scope:
+      path: "_pages"
     values:
       layout: single
-      author_profile: true
-      # read_time: true
-      show_date: true
-      comments: true
-      share: true
-      related: true
-      sidebar:
-        nav: "sidebar-category"
+      classes: wide
+  # 검색엔진 소유 확인 파일은 사이트맵에서 뺀다
+  - scope:
+      path: "google2c674aa981d2c0b0.html"
+    values:
+      sitemap: false
+  - scope:
+      path: "naver0f52afa1ca6a6b5d61cac576c65531c6.html"
+    values:
+      sitemap: false

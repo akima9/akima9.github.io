@@ -1,0 +1,95 @@
+---
+layout: single
+---
+{% assign r = page.r %}
+<div class="net-summary">
+  <div class="net-summary__item net-summary__item--main">
+    <span class="net-summary__label">월 실수령액</span>
+    <strong class="net-summary__value">{{ r.monthlyNet }}</strong>
+    <span class="net-summary__sub">약 {{ r.monthlyNetMan }}</span>
+  </div>
+  <div class="net-summary__item">
+    <span class="net-summary__label">연 실수령액</span>
+    <strong class="net-summary__value">{{ r.annualNet }}</strong>
+    <span class="net-summary__sub">약 {{ r.annualNetMan }}</span>
+  </div>
+  <div class="net-summary__item">
+    <span class="net-summary__label">월 공제액</span>
+    <strong class="net-summary__value">{{ r.totalDeduction }}</strong>
+    <span class="net-summary__sub">세전 월급의 {{ r.deductionRate }}</span>
+  </div>
+</div>
+
+<p>
+  {{ site.data.salary.year }}년 기준 <strong>연봉 {{ page.label }}</strong>의 세전 월급은 {{ r.monthlyGross }}이고,
+  4대보험과 소득세 {{ r.totalDeduction }}을 빼면 <strong>매달 {{ r.monthlyNet }}</strong>을 받습니다.
+  아래는 본인 1명(부양가족 없음), 비과세 식대 월 20만원, 퇴직금 별도 조건으로 계산한 결과입니다.
+</p>
+
+<p><a class="btn btn--primary btn--large" href="{{ page.calc_url }}">내 조건으로 다시 계산하기 →</a></p>
+
+<h2 id="deductions">연봉 {{ page.label }} 공제 내역</h2>
+<table class="salary-table">
+  <tbody>
+    <tr><th scope="row">세전 월급</th><td>{{ r.monthlyGross }}</td></tr>
+    <tr><th scope="row">비과세 (식대)</th><td>{{ r.nonTaxable }}</td></tr>
+    <tr><th scope="row">국민연금 (4.75%)</th><td>-{{ r.pension }}</td></tr>
+    <tr><th scope="row">건강보험 (3.595%)</th><td>-{{ r.health }}</td></tr>
+    <tr><th scope="row">장기요양보험</th><td>-{{ r.longTermCare }}</td></tr>
+    <tr><th scope="row">고용보험 (0.9%)</th><td>-{{ r.employment }}</td></tr>
+    <tr><th scope="row">근로소득세</th><td>-{{ r.incomeTax }}</td></tr>
+    <tr><th scope="row">지방소득세</th><td>-{{ r.localTax }}</td></tr>
+    <tr class="salary-table__total"><th scope="row">공제액 합계</th><td>-{{ r.totalDeduction }}</td></tr>
+    <tr class="salary-table__total"><th scope="row">월 실수령액</th><td>{{ r.monthlyNet }}</td></tr>
+  </tbody>
+</table>
+
+<h2 id="family">부양가족 수에 따른 연봉 {{ page.label }} 실수령액</h2>
+<p>부양가족이 많을수록 근로소득세가 줄어 실수령액이 늘어납니다. 본인과 배우자도 각각 1명으로 셉니다.</p>
+<table class="salary-table">
+  <thead><tr><th>공제대상가족</th><th>소득세+지방세</th><th>월 실수령액</th><th>본인 1명 대비</th></tr></thead>
+  <tbody>
+    {% for f in page.family %}
+    <tr><td>{{ f.name }}</td><td>{{ f.incomeTax }}</td><td>{{ f.monthlyNet }}</td><td>{% if forloop.first %}기준{% else %}{{ f.diff }}{% endif %}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<h2 id="conditions">조건이 다르면 얼마나 달라질까?</h2>
+<ul>
+  <li><strong>비과세 식대가 없는 경우:</strong> 월 {{ page.no_exempt_net }} ({{ page.no_exempt_diff }}). 식대 20만원은 세금과 4대보험이 붙지 않아 실수령액이 늘어납니다.</li>
+  <li><strong>퇴직금이 연봉에 포함된 경우:</strong> 연봉을 13으로 나눠 세전 월급이 {{ page.severance_gross }}, 월 실수령액은 {{ page.severance_net }}입니다. 나머지 1/13은 퇴직할 때 퇴직금으로 받습니다.</li>
+</ul>
+
+<h2 id="raise">연봉 {{ page.label }}에서 연봉이 오르면?</h2>
+<p>연봉 인상분이 모두 월급으로 들어오지는 않습니다. 인상분 중 실제로 손에 쥐는 비율을 확인해 보세요.</p>
+<table class="salary-table">
+  <thead><tr><th>연봉 인상</th><th>세전 월급 증가</th><th>실수령액 증가</th><th>실수령 비율</th></tr></thead>
+  <tbody>
+    {% for x in page.raise %}
+    <tr><td>+{{ x.label }}</td><td>{{ x.gross }}</td><td>{{ x.net }}</td><td>{{ x.keep }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if page.compare.size > 0 %}
+<h2 id="compare">비슷한 연봉과 실수령액 비교</h2>
+<table class="salary-table">
+  <thead><tr><th>연봉</th><th>월 실수령액</th><th>연봉 {{ page.label }} 대비</th></tr></thead>
+  <tbody>
+    {% for c in page.compare %}
+    <tr><td><a href="{{ c.url }}">연봉 {{ c.label }}</a></td><td>{{ c.monthlyNet }}</td><td>{{ c.diff }}</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+
+{% include salary/basis.html %}
+
+<nav class="salary-pager">
+  {% if page.prev %}<a class="btn btn--inverse" href="{{ page.prev.url }}">← 연봉 {{ page.prev.label }}</a>{% endif %}
+  <a class="btn btn--inverse" href="/salary/">전체 연봉표</a>
+  {% if page.next %}<a class="btn btn--inverse" href="{{ page.next.url }}">연봉 {{ page.next.label }} →</a>{% endif %}
+</nav>
+
+{{ content }}

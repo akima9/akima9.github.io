@@ -1,6 +1,6 @@
 {
-    "name":"",
-    "short_name":"",
+    "name":"실수령액 계산기",
+    "short_name":"실수령액",
     "icons":[
         {
             "src":"/assets/img/android-chrome-192x192.png",
